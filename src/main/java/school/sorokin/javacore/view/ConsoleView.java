@@ -17,7 +17,7 @@ public class ConsoleView {
     private static final String INCORRECT_INPUT_MESSAGE = "Некорректный ввод! Повторите попытку.";
     private static final String AUTHOR_REQUEST = "Введите автора: ";
     private static final String TITLE_REQUEST = "Введите название: ";
-    private static final String COUNT_REQUEST = "Введите количество: ";
+    private static final String COUNT_REQUEST = "Введите количество (больше нуля): ";
     private static final String MENU_ITEM_REQUEST = "\n> ";
     
     private static final String LIST_BOOKS_WORD = "Вывести список книг";
@@ -43,7 +43,7 @@ public class ConsoleView {
     public void chooseMenuItem() {
         Scanner sc = new Scanner(System.in);
 
-        switch (getInt(MENU_ITEM_REQUEST)) {
+        switch (getPositiveInt(MENU_ITEM_REQUEST)) {
             case LIST_BOOKS_KEY:
                 System.out.println("***\n" + lib.listBooks() + "***");
                 break;
@@ -71,7 +71,7 @@ public class ConsoleView {
             case ADD_NEW_BOOK_KEY:
                     final String title = getString(TITLE_REQUEST, sc);
                     final String author = getString(AUTHOR_REQUEST, sc);
-                    final int count = getInt(COUNT_REQUEST);
+                    final int count = getPositiveInt(COUNT_REQUEST);
                     lib.addNewBooks(title, author, count);
                     break;
 
@@ -90,16 +90,14 @@ public class ConsoleView {
         return st;
     }
 
-    private static int getInt(final String request) {
+    private static int getPositiveInt(final String request) {
         Scanner sc = new Scanner(System.in);
         int i = 0;
-        boolean done = false;
 
-        while (!done) {
+        while (i <= 0) {
             System.out.print(request);
             try {
                 i = sc.nextInt();
-                done = true;
             } catch (InputMismatchException e) {
                 System.out.println(INCORRECT_INPUT_MESSAGE);
                 sc.nextLine();

@@ -10,9 +10,11 @@ public class Library {
 
     private static final String SUCCESS_ADD_BOOK_MESSAGE = "Книги добавлены в каталог!";
     private static final String PIECES_WORD = "шт";
+    private final ArrayList<Book> catalog;
 
-
-    ArrayList<Book> catalog = new ArrayList<>();
+    public Library() {
+        this.catalog = new ArrayList<>();
+    }
 
     // Добавляет указанное количество экземпляров книги или создает новую с указанным кол-вом экземпляров.
     public void addNewBooks(final String title, final String author, final int countOfCopies) {
