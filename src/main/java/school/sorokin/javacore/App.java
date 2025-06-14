@@ -1,13 +1,14 @@
 package school.sorokin.javacore;
 
-/**
- * Hello world!
- *
- */
+import school.sorokin.javacore.view.ConsoleView;
+
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+    public static void main( String[] args ) {
+        ConsoleView cs = new ConsoleView();
+        while (true) {
+        cs.showMenu();
+        cs.chooseMenuItem();
+        }
     }
 }
